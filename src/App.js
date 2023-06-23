@@ -1,25 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import { Routes, Route } from "react-router-dom";
+import ProtectedRoute from "./common/ProtectedRoute";
+import PageLayout from "./components/PageLayout";
+import About from "./pages/About";
+import BookList from "./pages/BookList";
+import Dashboard from "./pages/Dashboard";
+import Notice from "./pages/Notice";
+import PageNotFound from "./pages/PageNotFound";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Routes>
+        <Route path="/" element={<PageLayout />}>
+          <Route element={<ProtectedRoute />}>
+            <Route path="/about" element={<About />} />
+            <Route path="/dashboard" element={<Dashboard />}>
+              <Route path="books" element={<BookList />} />
+              <Route path="notice" element={<Notice />} />
+            </Route>
+          </Route>
+
+          <Route path="*" element={<PageNotFound />} />
+        </Route>
+      </Routes>
+    </>
   );
-}
+};
 
 export default App;

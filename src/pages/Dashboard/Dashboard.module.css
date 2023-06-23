@@ -1,0 +1,13 @@
+.sidebar {
+  padding: 22.5px 15px;
+  font-size: 22.5px;
+  font-weight: bold;
+  font-family: "Courier New", Courier, monospace;
+  color: #1976d2;
+  text-decoration: none;
+}
+
+.sidebar.active {
+  background-color: #1976d2;
+  color: #fff;
+}
